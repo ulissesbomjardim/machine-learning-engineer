@@ -11,7 +11,10 @@ requires-python = "3.12.7"
 dependencies = [
     "fastapi (>=0.119.1,<0.120.0)",
     "uvicorn (>=0.38.0,<0.39.0)",
-    "requests (>=2.32.5,<3.0.0)"
+    "requests (>=2.32.5,<3.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "pandas (>=2.3.3,<3.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)"
 ]
 
 
@@ -59,3 +62,4 @@ test = "pytest -s -x -q --cov=src --cov-report=xml -vv"
 post_test = "coverage html"
 kill = "kill -9 $(lsof -t -i :8000)"
 docs = "mkdocs serve"
+run_extract = "poetry run python src/pipeline/main.py"
