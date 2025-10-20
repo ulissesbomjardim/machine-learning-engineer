@@ -1,0 +1,35 @@
+site_name: Case Machine Learning Engineer
+
+theme:
+  name: material # or other theme
+  palette:
+    primary: green
+    accent: light green
+  language: pt-BR
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+nav:
+  - Home: index.md
+
+repo_name: "ulissesbomjardim/machine-learning-engineer"
+repo_url: "https://github.com/ulissesbomjardim/machine-learning-engineer"
+edit_uri: "tree/main/docs/"
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+
+
+extra_css:
+  - stylesheets/extra.css
+
+
+plugins:
+  - search
+  - drawio
+  - mkdocstrings:
+      default_handler: python
