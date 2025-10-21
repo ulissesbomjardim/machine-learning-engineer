@@ -5,7 +5,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.12.7-blue.svg)](https://www.python.org)
 [![Poetry](https://img.shields.io/badge/poetry-dependency%20manager-blue.svg)](https://python-poetry.org)
-[![MkDocs](https://img.shields.io/badge/docs-MkDocs-blue.svg)](https://ulissesbomjardim.github.io/machine_learning_engineer/)
+[![MkDocs](https://img.shields.io/badge/docs-MkDocs-blue.svg)](https://ulissesbomjardim.github.io/machine-learning-engineer/)
 
 </div>
 
@@ -13,7 +13,7 @@
 
 A documentação completa do projeto está disponível em:
 
-**🌐 [https://ulissesbomjardim.github.io/machine_learning_engineer/](https://ulissesbomjardim.github.io/machine_learning_engineer/)**
+**🌐 [https://ulissesbomjardim.github.io/machine-learning-engineer/](https://ulissesbomjardim.github.io/machine-learning-engineer/)**
 
 ---
 
@@ -110,8 +110,8 @@ graph TD
 #### 📥 **1. Clone o Repositório**
 
 ```bash
-git clone https://github.com/ulissesbomjardim/machine_learning_engineer.git
-cd machine_learning_engineer
+git clone https://github.com/ulissesbomjardim/machine-learning-engineer.git
+cd machine-learning-engineer
 ```
 
 #### 🐍 **2. Configure Python 3.12.7**
@@ -469,9 +469,9 @@ graph LR
 | 🎯**Tipo**     | 📖**Descrição**      | 🔗**Canal**                                                                               |
 | -------------------- | ---------------------------- | ----------------------------------------------------------------------------------------------- |
 | 📧**Email**    | Dúvidas e feedbacks diretos | [ulisses.bomjardim@gmail.com](mailto:ulisses.bomjardim@gmail.com)                                  |
-| 🐛**Issues**   | Reportar bugs e problemas    | [🔗 GitHub Issues](https://github.com/ulissesbomjardim/machine_learning_engineer/issues)           |
-| 💡**Features** | Sugestões de melhorias      | [🔗 GitHub Discussions](https://github.com/ulissesbomjardim/machine_learning_engineer/discussions) |
-| ⭐**Suporte**  | Curtir o projeto             | [🔗 GitHub Star](https://github.com/ulissesbomjardim/machine_learning_engineer)                    |
+| 🐛**Issues**   | Reportar bugs e problemas    | [🔗 GitHub Issues](https://github.com/ulissesbomjardim/machine-learning-engineer/issues)           |
+| 💡**Features** | Sugestões de melhorias      | [🔗 GitHub Discussions](https://github.com/ulissesbomjardim/machine-learning-engineer/discussions) |
+| ⭐**Suporte**  | Curtir o projeto             | [🔗 GitHub Star](https://github.com/ulissesbomjardim/machine-learning-engineer)                    |
 
 ---
 
@@ -481,7 +481,7 @@ graph LR
 
 *📅 Última atualização: 2025-10-21*
 
-[![⭐ Stars](https://img.shields.io/github/stars/ulissesbomjardim/machine_learning_engineer?style=social)](https://github.com/ulissesbomjardim/machine_learning_engineer)
-[![🔧 Forks](https://img.shields.io/github/forks/ulissesbomjardim/machine_learning_engineer?style=social)](https://github.com/ulissesbomjardim/machine_learning_engineer/fork)
+[![⭐ Stars](https://img.shields.io/github/stars/ulissesbomjardim/machine-learning-engineer?style=social)](https://github.com/ulissesbomjardim/machine-learning-engineer)
+[![🔧 Forks](https://img.shields.io/github/forks/ulissesbomjardim/machine-learning-engineer?style=social)](https://github.com/ulissesbomjardim/machine-learning-engineer/fork)
 
 </div>
