@@ -1,10 +1,6 @@
-.center {/* Centralização de elementos */
-
-    display: block;.center {
-
-    margin-left: auto;    display: block;
-
-    margin-right: auto;    margin-left: auto;
-
-}    margin-right: auto;
+/* Centralização de elementos */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
