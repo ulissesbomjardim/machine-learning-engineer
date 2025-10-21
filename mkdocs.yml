@@ -20,38 +20,38 @@ theme:
 nav:
   - 🏠 Home: index.md
   - 🚀 Quick Start:
-    - quick-start/installation.md
-    - quick-start/setup.md
-    - quick-start/running.md
+    - installation: quick-start/installation.md
+    - setup: quick-start/setup.md
+    - running: quick-start/running.md
   - 🏗️ Arquitetura:
-    - architecture/overview.md
-    - architecture/components.md
-    - architecture/ml-pipeline.md
+    - overview: architecture/overview.md
+    - components: architecture/components.md
+    - ml-pipeline: architecture/ml-pipeline.md
   - 🤖 Machine Learning:
-    - ml/data-analysis.md
-    - ml/preprocessing.md
-    - ml/model-training.md
-    - ml/evaluation.md
+    - data-analysis: ml/data-analysis.md
+    - preprocessing: ml/preprocessing.md
+    - model-training: ml/model-training.md
+    - evaluation: ml/evaluation.md
   - ⚡ API Reference:
-    - api/endpoints.md
-    - api/models.md
-    - api/examples.md
+    - endpoints: api/endpoints.md
+    - models: api/models.md
+    - examples: api/examples.md
   - 🐳 Docker:
-    - docker/setup.md
-    - docker/compose.md
-    - docker/deployment.md
+    - setup: docker/setup.md
+    - compose: docker/compose.md
+    - deployment: docker/deployment.md
   - 🧪 Testes:
-    - tests/running-tests.md
-    - tests/coverage.md
-    - tests/integration.md
+    - running-tests: tests/running-tests.md
+    - coverage: tests/coverage.md
+    - integration: tests/integration.md
   - 📓 Notebooks:
-    - notebooks/eda.md
-    - notebooks/modeling.md
-    - notebooks/experiments.md
+    - eda: notebooks/eda.md
+    - modeling: notebooks/modeling.md
+    - experiments: notebooks/experiments.md
   - 🔧 Desenvolvimento:
-    - dev/environment.md
-    - dev/contributing.md
-    - dev/troubleshooting.md
+    - environment: dev/environment.md
+    - contributing: dev/contributing.md
+    - troubleshooting: dev/troubleshooting.md
 
 repo_name: "ulissesbomjardim/machine-learning-engineer"
 repo_url: "https://github.com/ulissesbomjardim/machine-learning-engineer"
