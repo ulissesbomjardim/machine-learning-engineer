@@ -1,17 +1,8 @@
 # 🚀 Machine Learning Engineer Challenge
 
-<div align="center">
-
-[![Python](https://img.shields.io/badge/python-3.12.7-blue.svg)](https://www.python.org)
-[![Poetry](https://img.shields.io/badge/poetry-dependency%20manager-blue.svg)](https://python-poetry.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green.svg)](https://fastapi.tiangolo.com)
-[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com)
-
-</div>
-
 ## 🎯 Visão Geral
 
-Este repositório contém a solução completa para o **Case Técnico de Machine Learning Engineer**, implementando uma arquitetura profissional para predição de cancelamento de voos usando **FastAPI**, **Machine Learning** e **Docker**.
+Este repositório contém a solução completa para o **Case Técnico de Machine Learning Engineer**, implementando uma arquitetura profissional para predição de atrasos de voos usando **FastAPI**, **Machine Learning** e **Docker**.
 
 ### 🌟 Destaques do Projeto
 
@@ -33,14 +24,14 @@ graph TB
 
 ### 🎯 Componentes do Sistema
 
-| **Componente**        | **Descrição**             | **Tecnologias**                 |
-| --------------------- | ------------------------- | ------------------------------- |
-| 📊 **EDA**            | Análise exploratória      | `Pandas`, `Jupyter Notebooks`  |
-| 🤖 **ML Pipeline**    | Pipeline de ML            | `Scikit-learn`, `Feature Eng.` |
-| ⚡ **API REST**       | Serviço de predição       | `FastAPI`, `Pydantic`          |
-| 🐳 **Containerização** | Deploy com containers   | `Docker`, `Docker Compose`     |
-| 🧪 **Testes**         | Testes unitários         | `Pytest`, `Coverage`           |
-| 📖 **Documentação**   | Docs técnicas            | `MkDocs`, `Material Theme`     |
+| **Componente**          | **Descrição**  | **Tecnologias**              |
+| ----------------------------- | ---------------------- | ---------------------------------- |
+| 📊**EDA**               | Análise exploratória | `Pandas`, `Jupyter Notebooks`  |
+| 🤖**ML Pipeline**       | Pipeline de ML         | `Scikit-learn`, `Feature Eng.` |
+| ⚡**API REST**          | Serviço de predição | `FastAPI`, `Pydantic`          |
+| 🐳**Containerização** | Deploy com containers  | `Docker`, `Docker Compose`     |
+| 🧪**Testes**            | Testes unitários      | `Pytest`, `Coverage`           |
+| 📖**Documentação**    | Docs técnicas         | `MkDocs`, `Material Theme`     |
 
 ## 🚀 Começando Rapidamente
 
@@ -73,9 +64,9 @@ uvicorn src.routers.main:app --reload
 ```
 
 !!! success "API Rodando"
-    🌐 **API**: [http://localhost:8000](http://localhost:8000)  
-    📚 **Swagger**: [http://localhost:8000/docs](http://localhost:8000/docs)  
-    📖 **Documentação**: `mkdocs serve`
+    🌐 **API**: [http://localhost:8000](http://localhost:8000)
+    📚**Swagger**: [http://localhost:8000/docs](http://localhost:8000/docs)
+    📖**Documentação**: `mkdocs serve`
 
 ## 📁 Estrutura do Projeto
 
@@ -99,7 +90,7 @@ machine-learning-engineer/
 
 ### 🎯 Objetivo Principal
 
-Desenvolver um **sistema completo de predição de cancelamento de voos** que inclui:
+Desenvolver um **sistema completo de predição de atrasos de voos** que inclui:
 
 - 📊 **Análise exploratória** dos dados históricos
 - 🤖 **Modelo de Machine Learning** para classificação
@@ -109,14 +100,14 @@ Desenvolver um **sistema completo de predição de cancelamento de voos** que in
 
 ### 📋 Funcionalidades Implementadas
 
-| **Endpoint**     | **Método** | **Descrição**              |
-| ---------------- | ---------- | -------------------------- |
-| `/`              | GET        | Informações da API         |
-| `/health`        | GET        | Status do sistema          |
-| `/docs`          | GET        | Documentação Swagger       |
-| `/model/predict` | POST       | Predição de cancelamento   |
-| `/model/load`    | GET/POST   | Carregamento de modelos    |
-| `/model/history` | GET        | Histórico de predições     |
+| **Endpoint** | **Método** | **Descrição**     |
+| ------------------ | ----------------- | ------------------------- |
+| `/`              | GET               | Informações da API      |
+| `/health`        | GET               | Status do sistema         |
+| `/docs`          | GET               | Documentação Swagger    |
+| `/model/predict` | POST              | Predição de atraso      |
+| `/model/load`    | GET/POST          | Carregamento de modelos   |
+| `/model/history` | GET               | Histórico de predições |
 
 ### 🧠 Pipeline de Machine Learning
 
@@ -141,37 +132,44 @@ graph LR
 ## 📚 Navegação da Documentação
 
 ### 🚀 **Quick Start**
+
 - [📥 Instalação](quick-start/installation.md) - Como instalar dependências
 - [⚙️ Setup](quick-start/setup.md) - Configuração do ambiente
 - [🏃 Executando](quick-start/running.md) - Como rodar o projeto
 
 ### 🏗️ **Arquitetura**
+
 - [📋 Visão Geral](architecture/overview.md) - Arquitetura do sistema
 - [🧩 Componentes](architecture/components.md) - Detalhes dos módulos
 - [🤖 Pipeline ML](architecture/ml-pipeline.md) - Fluxo de Machine Learning
 
 ### 🤖 **Machine Learning**
+
 - [📊 Análise de Dados](ml/data-analysis.md) - EDA e insights
 - [🔧 Preprocessing](ml/preprocessing.md) - Limpeza e transformação
 - [🎯 Treinamento](ml/model-training.md) - Algoritmos e hiperparâmetros
 - [📈 Avaliação](ml/evaluation.md) - Métricas e validação
 
 ### ⚡ **API Reference**
+
 - [🔗 Endpoints](api/endpoints.md) - Documentação completa da API
 - [📋 Modelos](api/models.md) - Schemas Pydantic
 - [💡 Exemplos](api/examples.md) - Casos de uso práticos
 
 ### 🐳 **Docker**
+
 - [⚙️ Setup](docker/setup.md) - Configuração Docker
 - [🔧 Compose](docker/compose.md) - Docker Compose
 - [🚀 Deploy](docker/deployment.md) - Deploy em produção
 
 ### 🧪 **Testes**
+
 - [🏃 Executando](tests/running-tests.md) - Como rodar testes
 - [📊 Coverage](tests/coverage.md) - Cobertura de código
 - [🔄 Integração](tests/integration.md) - Testes de integração
 
 ### 📓 **Notebooks**
+
 - [📊 EDA](notebooks/eda.md) - Análise exploratória
 - [🤖 Modelagem](notebooks/modeling.md) - Desenvolvimento do modelo
 - [🧪 Experimentos](notebooks/experiments.md) - Experimentos e otimização
@@ -179,6 +177,7 @@ graph LR
 ## 🛠️ Comandos Úteis
 
 ### 📦 **Poetry**
+
 ```bash
 poetry install          # Instalar dependências
 poetry shell           # Ativar ambiente virtual
@@ -186,6 +185,7 @@ poetry add <package>   # Adicionar pacote
 ```
 
 ### 🧪 **Testes**
+
 ```bash
 task test              # Executar todos os testes
 task test-cov         # Testes com coverage
@@ -193,12 +193,14 @@ pytest -v             # Testes verbose
 ```
 
 ### ⚡ **API**
+
 ```bash
 uvicorn src.routers.main:app --reload  # Desenvolvimento
 uvicorn src.routers.main:app --host 0.0.0.0 --port 8000  # Produção
 ```
 
 ### 🐳 **Docker**
+
 ```bash
 docker-compose up --build    # Build e executar
 docker-compose up           # Executar containers
@@ -206,6 +208,7 @@ docker-compose down         # Parar containers
 ```
 
 ### 📖 **Documentação**
+
 ```bash
 mkdocs serve           # Servidor local
 mkdocs build          # Build estático
