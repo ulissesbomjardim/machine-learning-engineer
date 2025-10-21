@@ -27,7 +27,7 @@ Este repositório contém a solução para o **Case Técnico de Machine Learning
 graph TB
     A[📊 Análise de Dados] --> B[🤖 Machine Learning]
     B --> C[⚡ API FastAPI]
-    C --> D[� Docker/Docker Compose]
+    C --> D["🐳 Docker/Docker Compose"]
     D --> E[🧪 Testes Automatizados]
     E --> F[📖 Documentação MkDocs]
 
@@ -43,7 +43,7 @@ graph TB
 
 | 🎯**Componente**        | 📖**Descrição**             | 🛠️**Tecnologias**                 |
 | ----------------------------- | ----------------------------------- | ----------------------------------------- |
-| �**EDA**               | Análise exploratória de dados     | `Pandas`, `Jupyter Notebooks`         |
+| 📊**EDA**               | Análise exploratória de dados     | `Pandas`, `Jupyter Notebooks`         |
 | 🤖**ML Pipeline**       | Pipeline de Machine Learning        | `Scikit-learn`, `Feature Engineering` |
 | ⚡**API**               | Serviço de predição via REST API | `FastAPI`, `Pydantic`, `Uvicorn`    |
 | 🐳**Containerização** | Deploy com containers               | `Docker`, `Docker Compose`            |
@@ -267,37 +267,37 @@ poetry env info
 
 ```mermaid
 graph TB
-    A[📂 machine-learning-engineer/] --> B[💻 src/]
-    A --> C[🧪 tests/]
-    A --> D[📊 data/]
-    A --> E[📖 docs/]
-    A --> F[🗄️ model/]
-    A --> G[📓 notebook/]
-    A --> H[⚙️ Configs]
+    A["📂 machine-learning-engineer/"] --> B["💻 src/"]
+    A --> C["🧪 tests/"]
+    A --> D["📊 data/"]
+    A --> E["📖 docs/"]
+    A --> F["🗄️ model/"]
+    A --> G["📓 notebook/"]
+    A --> H["⚙️ Configs"]
 
-    B --> B1[🔗 routers/]
-    B --> B2[⚙️ services/]
+    B --> B1["🔗 routers/"]
+    B --> B2["⚙️ services/"]
 
-    B1 --> B11[🚀 main.py]
-    B1 --> B12[🤖 model/]
+    B1 --> B11["🚀 main.py"]
+    B1 --> B12["🤖 model/"]
 
-    B12 --> B121[� predict.py]
-    B12 --> B122[� history.py]
-    B12 --> B123[� load.py]
+    B12 --> B121["📝 predict.py"]
+    B12 --> B122["📈 history.py"]
+    B12 --> B123["📂 load.py"]
 
-    B2 --> B21[🗄️ database.py]
+    B2 --> B21["🗄️ database.py"]
 
-    C --> C1[🧪 (tests aqui)]
+    C --> C1["🧪 tests"]
 
-    D --> D1[📥 input/]
-    D --> D2[📤 output/]
+    D --> D1["📥 input/"]
+    D --> D2["📤 output/"]
 
-    F --> F1[� (modelos aqui)]
+    F --> F1["🎯 modelos"]
 
-    G --> G1[� *.ipynb]
+    G --> G1["📓 notebooks"]
 
-    H --> H1[� pyproject.toml]
-    H --> H2[� docker-compose.yml]
+    H --> H1["⚙️ pyproject.toml"]
+    H --> H2["🐳 docker-compose.yml"]
 
     style A fill:#e1f5fe
     style B fill:#f3e5f5
@@ -323,7 +323,7 @@ graph TB
 | `📓 notebook/`          | Jupyter Notebooks       | EDA e experimentos                    |
 | `📖 docs/`              | Documentação          | Guias e referências MkDocs           |
 | `⚙️ config/`          | Configurações         | Arquivos de configuração            |
-| `� docker/`            | Docker files            | Containers e dependências            |
+| `🐳 docker/`            | Docker files            | Containers e dependências            |
 
 ## 🤖 Sobre o Challenge
 
@@ -331,29 +331,29 @@ graph TB
 
 Desenvolver um sistema de **predição de cancelamento de voos** utilizando dados históricos, implementando:
 
-- � **Análise Exploratória**: Compreensão dos padrões de cancelamento
+- 📊 **Análise Exploratória**: Compreensão dos padrões de cancelamento
 - 🤖 **Modelo de ML**: Algoritmo de classificação para predição
 - ⚡ **API REST**: Serviço para consultas em tempo real
-- � **Deploy**: Containerização para produção
+- 🐳 **Deploy**: Containerização para produção
 
 ### 📋 **Funcionalidades Principais**
 
-| 🎯**Feature**        | �**Descrição**    | 🀽�**Endpoint** |
+| 🎯**Feature**        | 📖**Descrição**    | 🔗**Endpoint** |
 | -------------------------- | -------------------------- | ---------------------- |
 | 🔮**Predição**     | Prever cancelamento de voo | `POST /predict`      |
 | 📊**Health Check**   | Status do serviço         | `GET /health`        |
-| �**Documentação** | Swagger UI interativo      | `GET /docs`          |
+| 📋**Documentação** | Swagger UI interativo      | `GET /docs`          |
 | 📈**Histórico**     | Histórico de predições  | `GET /history`       |
 
 ### 🧠 **Abordagem de ML**
 
 ```mermaid
 graph LR
-    A[� Dados] --> B[🔧 Preprocessing]
-    B --> C[� Feature Engineering]
-    C --> D[🤖 Modelo]
-    D --> E[📈 Avaliação]
-    E --> F[⚡ Deploy]
+    A["📊 Dados"] --> B["🔧 Preprocessing"]
+    B --> C["⚙️ Feature Engineering"]
+    C --> D["🤖 Modelo"]
+    D --> E["📈 Avaliação"]
+    E --> F["⚡ Deploy"]
 
     style A fill:#e3f2fd
     style B fill:#f3e5f5
@@ -367,22 +367,22 @@ graph LR
 
 ```mermaid
 graph TD
-    A[❌ Problema] --> B{🐍 Python?}
-    A --> C{📦 Poetry?}
-    A --> D{� Docker?}
-    A --> E{⚡ API?}
+    A["❌ Problema"] --> B{"🐍 Python?"}
+    A --> C{"📦 Poetry?"}
+    A --> D{"🐳 Docker?"}
+    A --> E{"⚡ API?"}
 
-    B --> B1[✅ Verificar versão 3.12.7]
-    B --> B2[⚙️ poetry env use 3.12.7]
+    B --> B1["✅ Verificar versão 3.12.7"]
+    B --> B2["⚙️ poetry env use 3.12.7"]
 
-    C --> C1[🗑️ poetry env remove 3.12.7]
-    C --> C2[🔄 poetry install]
+    C --> C1["🗑️ poetry env remove 3.12.7"]
+    C --> C2["🔄 poetry install"]
 
-    D --> D1[� docker-compose down]
-    D --> D2[🏗️ docker-compose up --build]
+    D --> D1["🛑 docker-compose down"]
+    D --> D2["🏗️ docker-compose up --build"]
 
-    E --> E1[🔍 Verificar porta 8000]
-    E --> E2[📋 Verificar logs]
+    E --> E1["🔍 Verificar porta 8000"]
+    E --> E2["📋 Verificar logs"]
 
     style A fill:#ffebee
     style B1 fill:#e8f5e8
