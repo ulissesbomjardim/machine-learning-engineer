@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    container_name: docker-spark-api
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/app
+      - MONGODB_URL=mongodb://mongo:27017
+      - DATABASE_NAME=picpay_ml
+    volumes:
+      - ./model:/app/model
+      - ./data:/app/data
+    networks:
+      - spark-network
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7.0
+    container_name: docker-spark-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - spark-network
+
+networks:
+  spark-network:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local

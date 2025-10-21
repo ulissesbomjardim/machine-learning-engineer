@@ -1,16 +1,57 @@
-site_name: Case Machine Learning Engineer
+site_name: Machine Learning Engineer Challenge
 
 theme:
-  name: material # or other theme
+  name: material
   palette:
     primary: green
     accent: light green
   language: pt-BR
   logo: assets/logo.png
   favicon: assets/logo.png
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
 
 nav:
-  - Home: index.md
+  - 🏠 Home: index.md
+  - 🚀 Quick Start:
+    - quick-start/installation.md
+    - quick-start/setup.md
+    - quick-start/running.md
+  - 🏗️ Arquitetura:
+    - architecture/overview.md
+    - architecture/components.md
+    - architecture/ml-pipeline.md
+  - 🤖 Machine Learning:
+    - ml/data-analysis.md
+    - ml/preprocessing.md
+    - ml/model-training.md
+    - ml/evaluation.md
+  - ⚡ API Reference:
+    - api/endpoints.md
+    - api/models.md
+    - api/examples.md
+  - 🐳 Docker:
+    - docker/setup.md
+    - docker/compose.md
+    - docker/deployment.md
+  - 🧪 Testes:
+    - tests/running-tests.md
+    - tests/coverage.md
+    - tests/integration.md
+  - 📓 Notebooks:
+    - notebooks/eda.md
+    - notebooks/modeling.md
+    - notebooks/experiments.md
+  - 🔧 Desenvolvimento:
+    - dev/environment.md
+    - dev/contributing.md
+    - dev/troubleshooting.md
 
 repo_name: "ulissesbomjardim/machine-learning-engineer"
 repo_url: "https://github.com/ulissesbomjardim/machine-learning-engineer"
@@ -18,18 +59,28 @@ edit_uri: "tree/main/docs/"
 
 markdown_extensions:
   - attr_list
+  - admonition
+  - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
-
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji
 
 extra_css:
   - stylesheets/extra.css
 
-
 plugins:
   - search
-  - drawio
   - mkdocstrings:
       default_handler: python
+      handlers:
+        python:
+          options:
+            show_source: true
