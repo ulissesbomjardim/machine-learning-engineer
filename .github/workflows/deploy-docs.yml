@@ -1,0 +1,70 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/deploy-docs.yml'
+
+  # Permite executar manualmente o workflow
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout main branch
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: latest
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Install dependencies
+      run: poetry install --with doc --no-root
+
+    - name: Build documentation
+      run: poetry run mkdocs build
+
+    - name: Deploy to docs branch
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        
+        # Create or checkout docs branch
+        git checkout --orphan docs-temp
+        git rm -rf .
+        
+        # Copy built documentation
+        cp -r site/* .
+        rm -rf site
+        
+        # Add and commit changes
+        git add .
+        git commit -m "docs: update documentation from main branch"
+        
+        # Force push to docs branch
+        git branch -M docs-temp docs
+        git push origin docs --force
+
+    - name: Return to main branch
+      run: git checkout main

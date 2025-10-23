@@ -27,6 +27,7 @@ nav:
     - overview: architecture/overview.md
     - components: architecture/components.md
     - ml-pipeline: architecture/ml-pipeline.md
+    - architecture-comparison: architecture/architecture-comparison.md
   - 🤖 Machine Learning:
     - data-analysis: ml/data-analysis.md
     - preprocessing: ml/preprocessing.md
