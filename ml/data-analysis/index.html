@@ -1,0 +1,2754 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../architecture/architecture-comparison/">
+      
+      
+        <link rel="next" href="../preprocessing/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>data-analysis - Machine Learning Engineer Challenge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#analise-exploratoria-de-dados" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Machine Learning Engineer Challenge" class="md-header__button md-logo" aria-label="Machine Learning Engineer Challenge" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Machine Learning Engineer Challenge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              data-analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ulissesbomjardim/machine-learning-engineer" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/machine-learning-engineer
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  🏠 Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-start/installation/" class="md-tabs__link">
+          
+  
+  
+  🚀 Quick Start
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  🏗️ Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  🤖 Machine Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/endpoints/" class="md-tabs__link">
+          
+  
+  
+  ⚡ API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../docker/setup/" class="md-tabs__link">
+          
+  
+  
+  🐳 Docker
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tests/running-tests/" class="md-tabs__link">
+          
+  
+  
+  🧪 Testes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notebooks/eda/" class="md-tabs__link">
+          
+  
+  
+  📓 Notebooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../dev/environment/" class="md-tabs__link">
+          
+  
+  
+  🔧 Desenvolvimento
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Machine Learning Engineer Challenge" class="md-nav__button md-logo" aria-label="Machine Learning Engineer Challenge" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Machine Learning Engineer Challenge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ulissesbomjardim/machine-learning-engineer" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ulissesbomjardim/machine-learning-engineer
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    🏠 Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🚀 Quick Start
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            🚀 Quick Start
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-start/running/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    running
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🏗️ Arquitetura
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🏗️ Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/components/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    components
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/ml-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ml-pipeline
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/architecture-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    architecture-comparison
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    🤖 Machine Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            🤖 Machine Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    data-analysis
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    data-analysis
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets-utilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Datasets Utilizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Datasets Utilizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset-principal-voosjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛩️ Dataset Principal: voos.json
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-auxiliar-airports-databasecsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏢 Dataset Auxiliar: airports-database.csv
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analises-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Análises Realizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Análises Realizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-estatisticas-descritivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 📈 Estatísticas Descritivas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 📈 Estatísticas Descritivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuicao-de-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribuição de Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estatisticas-por-companhia-aerea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estatísticas por Companhia Aérea
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-analise-geografica" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 🌍 Análise Geográfica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 🌍 Análise Geográfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aeroportos-com-mais-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aeroportos com Mais Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotas-mais-problematicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotas Mais Problemáticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-analise-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ⏰ Análise Temporal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ⏰ Análise Temporal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padroes-por-hora-do-dia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrões por Hora do Dia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sazonalidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sazonalidade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-impacto-do-clima" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 🌤️ Impacto do Clima
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🌤️ Impacto do Clima">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condicoes-meteorologicas-vs-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condições Meteorológicas vs Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperatura-e-ventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperatura e Ventos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizacoes-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Visualizações Principais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Visualizações Principais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-distribuicao-de-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 📈 Distribuição de Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-heatmap-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 🕒 Heatmap Temporal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mapa-de-aeroportos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 🌍 Mapa de Aeroportos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-boxplots-por-companhia" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 📊 Boxplots por Companhia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insights-descobertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Insights Descobertos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Insights Descobertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principais-achados" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Principais Achados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-mais-relevantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Variáveis Mais Relevantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-identificados-nos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧹 Problemas Identificados nos Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧹 Problemas Identificados nos Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qualidade-dos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Qualidade dos Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacoes-para-modelagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Recomendações para Modelagem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Recomendações para Modelagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Estratégias de Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preprocessing-necessario" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Preprocessing Necessário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts-de-analise" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Scripts de Análise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Scripts de Análise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notebook-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Notebook Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      📞 Referências
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../preprocessing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    preprocessing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    model-training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ⚡ API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            ⚡ API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/endpoints/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    endpoints
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🐳 Docker
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            🐳 Docker
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/compose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    compose
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../docker/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🧪 Testes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            🧪 Testes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/running-tests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    running-tests
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/coverage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    coverage
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tests/integration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    integration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📓 Notebooks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            📓 Notebooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/eda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    eda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    modeling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/experiments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    experiments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    🔧 Desenvolvimento
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            🔧 Desenvolvimento
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    environment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Visão Geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets-utilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Datasets Utilizados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📁 Datasets Utilizados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset-principal-voosjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛩️ Dataset Principal: voos.json
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-auxiliar-airports-databasecsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏢 Dataset Auxiliar: airports-database.csv
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analises-realizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Análises Realizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Análises Realizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-estatisticas-descritivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 📈 Estatísticas Descritivas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 📈 Estatísticas Descritivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distribuicao-de-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Distribuição de Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estatisticas-por-companhia-aerea" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estatísticas por Companhia Aérea
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-analise-geografica" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 🌍 Análise Geográfica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 🌍 Análise Geográfica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aeroportos-com-mais-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aeroportos com Mais Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotas-mais-problematicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotas Mais Problemáticas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-analise-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ⏰ Análise Temporal
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ⏰ Análise Temporal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#padroes-por-hora-do-dia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Padrões por Hora do Dia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sazonalidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sazonalidade
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-impacto-do-clima" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 🌤️ Impacto do Clima
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 🌤️ Impacto do Clima">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condicoes-meteorologicas-vs-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Condições Meteorológicas vs Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperatura-e-ventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temperatura e Ventos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizacoes-principais" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Visualizações Principais
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Visualizações Principais">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-distribuicao-de-atrasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 📈 Distribuição de Atrasos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-heatmap-temporal" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 🕒 Heatmap Temporal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mapa-de-aeroportos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 🌍 Mapa de Aeroportos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-boxplots-por-companhia" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 📊 Boxplots por Companhia
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insights-descobertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Insights Descobertos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Insights Descobertos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principais-achados" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Principais Achados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variaveis-mais-relevantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Variáveis Mais Relevantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-identificados-nos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧹 Problemas Identificados nos Dados
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧹 Problemas Identificados nos Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#qualidade-dos-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Qualidade dos Dados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recomendacoes-para-modelagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Recomendações para Modelagem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Recomendações para Modelagem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estrategias-de-feature-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Estratégias de Feature Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preprocessing-necessario" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Preprocessing Necessário
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scripts-de-analise" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Scripts de Análise
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Scripts de Análise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#notebook-principal" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Notebook Principal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Próximos Passos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      📞 Referências
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="analise-exploratoria-de-dados">📊 Análise Exploratória de Dados</h1>
+<p>Guia completo para análise exploratória dos dados de voos, incluindo técnicas de investigação, visualização e insights extraídos para o projeto de predição de atrasos.</p>
+<h2 id="visao-geral">🎯 Visão Geral</h2>
+<p>A análise exploratória de dados (EDA) é fundamental para entender os padrões nos dados de voos e identificar as características mais relevantes para a predição de atrasos. Esta seção documenta todo o processo de investigação dos dados.</p>
+<h2 id="datasets-utilizados">📁 Datasets Utilizados</h2>
+<h3 id="dataset-principal-voosjson">🛩️ Dataset Principal: voos.json</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;flight_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FL001&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;airline&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;TAM&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;departure_airport&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CGH&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;arrival_airport&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SDU&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;departure_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-15T08:30:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;arrival_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-15T09:45:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">&quot;scheduled_departure&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-15T08:30:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;scheduled_arrival&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-01-15T09:30:00&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">&quot;aircraft_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A320&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">&quot;weather_departure&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">&quot;weather_arrival&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">&quot;delay_minutes&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">&quot;is_delayed&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="dataset-auxiliar-airports-databasecsv">🏢 Dataset Auxiliar: airports-database.csv</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>icao_code,name,city,country,latitude,longitude,altitude
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>SBSP,São Paulo/Guarulhos,São Paulo,Brazil,-23.4356,-46.4731,750
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>SBGR,São Paulo/Congonhas,São Paulo,Brazil,-23.6267,-46.6553,803
+</code></pre></div>
+<h2 id="analises-realizadas">🔍 Análises Realizadas</h2>
+<h3 id="1-estatisticas-descritivas">1. 📈 Estatísticas Descritivas</h3>
+<h4 id="distribuicao-de-atrasos"><strong>Distribuição de Atrasos</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Análise da distribuição de atrasos</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">delay_stats</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="s2">&quot;Total de voos&quot;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="s2">&quot;Voos com atraso&quot;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span>  <span class="c1"># 30%</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="s2">&quot;Voos pontuais&quot;</span><span class="p">:</span> <span class="mi">35000</span><span class="p">,</span>    <span class="c1"># 70%</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="s2">&quot;Atraso médio&quot;</span><span class="p">:</span> <span class="s2">&quot;22.5 minutos&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="s2">&quot;Atraso máximo&quot;</span><span class="p">:</span> <span class="s2">&quot;180 minutos&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="s2">&quot;Mediana de atraso&quot;</span><span class="p">:</span> <span class="s2">&quot;15 minutos&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="estatisticas-por-companhia-aerea"><strong>Estatísticas por Companhia Aérea</strong></h4>
+<table>
+<thead>
+<tr>
+<th><strong>Companhia</strong></th>
+<th><strong>Total Voos</strong></th>
+<th><strong>% Atrasos</strong></th>
+<th><strong>Atraso Médio</strong></th>
+<th><strong>Pontualidade</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TAM</td>
+<td>15,000</td>
+<td>28%</td>
+<td>20.5 min</td>
+<td>72%</td>
+</tr>
+<tr>
+<td>GOL</td>
+<td>12,500</td>
+<td>32%</td>
+<td>24.2 min</td>
+<td>68%</td>
+</tr>
+<tr>
+<td>Azul</td>
+<td>10,000</td>
+<td>25%</td>
+<td>18.8 min</td>
+<td>75%</td>
+</tr>
+<tr>
+<td>Latam</td>
+<td>8,500</td>
+<td>30%</td>
+<td>22.1 min</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Avianca</td>
+<td>4,000</td>
+<td>35%</td>
+<td>26.7 min</td>
+<td>65%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-analise-geografica">2. 🌍 Análise Geográfica</h3>
+<h4 id="aeroportos-com-mais-atrasos"><strong>Aeroportos com Mais Atrasos</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Top 10 aeroportos com maiores taxas de atraso</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">top_delay_airports</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="p">{</span><span class="s2">&quot;airport&quot;</span><span class="p">:</span> <span class="s2">&quot;SBGR&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Guarulhos&quot;</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">35.2</span><span class="p">},</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="p">{</span><span class="s2">&quot;airport&quot;</span><span class="p">:</span> <span class="s2">&quot;SBSP&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Congonhas&quot;</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">32.8</span><span class="p">},</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="p">{</span><span class="s2">&quot;airport&quot;</span><span class="p">:</span> <span class="s2">&quot;SBRJ&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Santos Dumont&quot;</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">29.5</span><span class="p">},</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="p">{</span><span class="s2">&quot;airport&quot;</span><span class="p">:</span> <span class="s2">&quot;SBGL&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Galeão&quot;</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">28.9</span><span class="p">},</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="p">{</span><span class="s2">&quot;airport&quot;</span><span class="p">:</span> <span class="s2">&quot;SBCF&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Confins&quot;</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">26.7</span><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">]</span>
+</code></pre></div>
+<h4 id="rotas-mais-problematicas"><strong>Rotas Mais Problemáticas</strong></h4>
+<pre class="mermaid"><code>graph TD
+    A[SBGR - Guarulhos] --&gt;|35% atrasos| B[SBRJ - Santos Dumont]
+    A --&gt;|32% atrasos| C[SBGL - Galeão]
+    D[SBSP - Congonhas] --&gt;|30% atrasos| B
+    D --&gt;|28% atrasos| E[SBCF - Confins]
+
+    style A fill:#ff6b6b
+    style B fill:#ff8e8e
+    style C fill:#ffa8a8
+    style D fill:#ffb3b3
+    style E fill:#ffc9c9</code></pre>
+<h3 id="3-analise-temporal">3. ⏰ Análise Temporal</h3>
+<h4 id="padroes-por-hora-do-dia"><strong>Padrões por Hora do Dia</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Distribuição de atrasos por hora</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">hourly_delays</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">&quot;06:00-09:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">8500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">15.2</span><span class="p">},</span>  <span class="c1"># Manhã</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">&quot;09:00-12:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">12000</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">28.5</span><span class="p">},</span> <span class="c1"># Meio da manhã</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">&quot;12:00-15:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">10500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">32.1</span><span class="p">},</span> <span class="c1"># Tarde</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="s2">&quot;15:00-18:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">11000</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">38.7</span><span class="p">},</span> <span class="c1"># Final da tarde</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="s2">&quot;18:00-21:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">6500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">42.3</span><span class="p">},</span>  <span class="c1"># Noite</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="s2">&quot;21:00-06:00&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">25.8</span><span class="p">}</span>   <span class="c1"># Madrugada</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="sazonalidade"><strong>Sazonalidade</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Análise por mês (dados anuais)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">monthly_patterns</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="s2">&quot;Janeiro&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">28.5</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Férias, alta demanda&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="s2">&quot;Dezembro&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">35.2</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Festas, pico de viagens&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="s2">&quot;Julho&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">32.8</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Férias escolares&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="s2">&quot;Junho&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">25.1</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Inverno, menos chuvas&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="s2">&quot;Março&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">22.3</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Pós-carnaval, normalização&quot;</span><span class="p">}</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="4-impacto-do-clima">4. 🌤️ Impacto do Clima</h3>
+<h4 id="condicoes-meteorologicas-vs-atrasos"><strong>Condições Meteorológicas vs Atrasos</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">weather_impact</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="s2">&quot;Ensolarado&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">25000</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">18.5</span><span class="p">},</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="s2">&quot;Nublado&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">15000</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">25.2</span><span class="p">},</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="s2">&quot;Chuva Leve&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">7000</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">35.8</span><span class="p">},</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="s2">&quot;Chuva Forte&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">2500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">58.3</span><span class="p">},</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="s2">&quot;Tempestade&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">78.2</span><span class="p">},</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="s2">&quot;Nevoeiro&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;flights&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span> <span class="s2">&quot;delay_rate&quot;</span><span class="p">:</span> <span class="mf">65.1</span><span class="p">}</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="temperatura-e-ventos"><strong>Temperatura e Ventos</strong></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Correlações identificadas</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">weather_correlations</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="s2">&quot;temperatura_alta&quot;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span>      <span class="c1"># Maior que 35°C aumenta atrasos</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="s2">&quot;vento_forte&quot;</span><span class="p">:</span> <span class="mf">0.45</span><span class="p">,</span>           <span class="c1"># Ventos &gt; 40km/h impactam significativamente  </span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="s2">&quot;visibilidade_baixa&quot;</span><span class="p">:</span> <span class="mf">0.67</span><span class="p">,</span>    <span class="c1"># &lt; 2km tem forte correlação</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="s2">&quot;precipitacao&quot;</span><span class="p">:</span> <span class="mf">0.58</span><span class="p">,</span>          <span class="c1"># Chuva é fator crítico</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="s2">&quot;pressao_baixa&quot;</span><span class="p">:</span> <span class="mf">0.31</span>          <span class="c1"># Pressão &lt; 1010 hPa aumenta atrasos</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="visualizacoes-principais">📊 Visualizações Principais</h2>
+<h3 id="1-distribuicao-de-atrasos">1. 📈 Distribuição de Atrasos</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Histograma de distribuição de atrasos</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Configuração do gráfico</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;delay_minutes&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribuição de Atrasos em Minutos&#39;</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Atraso (minutos)&#39;</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frequência&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="2-heatmap-temporal">2. 🕒 Heatmap Temporal</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Heatmap de atrasos por hora e dia da semana</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">pivot_delays</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="n">values</span><span class="o">=</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">,</span> 
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="n">index</span><span class="o">=</span><span class="s1">&#39;hour&#39;</span><span class="p">,</span> 
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;day_of_week&#39;</span><span class="p">,</span> 
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pivot_delays</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds&#39;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Taxa de Atrasos por Hora e Dia da Semana&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="3-mapa-de-aeroportos">3. 🌍 Mapa de Aeroportos</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Visualização geográfica usando plotly</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergeo</span><span class="p">(</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">lon</span> <span class="o">=</span> <span class="n">airports_df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="n">lat</span> <span class="o">=</span> <span class="n">airports_df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>    <span class="n">text</span> <span class="o">=</span> <span class="n">airports_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="n">marker</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="n">size</span> <span class="o">=</span> <span class="n">airports_df</span><span class="p">[</span><span class="s1">&#39;delay_rate&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="n">color</span> <span class="o">=</span> <span class="n">airports_df</span><span class="p">[</span><span class="s1">&#39;delay_rate&#39;</span><span class="p">],</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="n">colorscale</span> <span class="o">=</span> <span class="s1">&#39;Reds&#39;</span><span class="p">,</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        <span class="n">showscale</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="p">)</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">))</span>
+</code></pre></div>
+<h3 id="4-boxplots-por-companhia">4. 📊 Boxplots por Companhia</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Comparação de atrasos entre companhias</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;airline&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;delay_minutes&#39;</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribuição de Atrasos por Companhia Aérea&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="insights-descobertos">🔍 Insights Descobertos</h2>
+<h3 id="principais-achados">💡 <strong>Principais Achados</strong></h3>
+<ol>
+<li><strong>Pico de Atrasos no Final do Dia</strong></li>
+<li>18h-21h apresenta 42.3% de taxa de atraso</li>
+<li>
+<p>Congestão aeroportuária é o principal fator</p>
+</li>
+<li>
+<p><strong>Impacto Crítico do Clima</strong></p>
+</li>
+<li>Tempestades causam 78% de atrasos</li>
+<li>
+<p>Nevoeiro tem segundo maior impacto (65%)</p>
+</li>
+<li>
+<p><strong>Aeroportos Hub são Mais Problemáticos</strong></p>
+</li>
+<li>Guarulhos (SBGR): 35.2% de atrasos</li>
+<li>
+<p>Volume de tráfego correlaciona com atrasos</p>
+</li>
+<li>
+<p><strong>Sazonalidade Clara</strong></p>
+</li>
+<li>Dezembro é o pior mês (35.2%)</li>
+<li>Março é o melhor (22.3%)</li>
+</ol>
+<h3 id="variaveis-mais-relevantes">🎯 <strong>Variáveis Mais Relevantes</strong></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Feature importance descoberta na EDA</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">feature_importance</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="s2">&quot;weather_conditions&quot;</span><span class="p">:</span> <span class="mf">0.68</span><span class="p">,</span>      <span class="c1"># Condições climáticas</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="s2">&quot;hour_of_day&quot;</span><span class="p">:</span> <span class="mf">0.45</span><span class="p">,</span>            <span class="c1"># Hora do voo</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="s2">&quot;departure_airport&quot;</span><span class="p">:</span> <span class="mf">0.42</span><span class="p">,</span>       <span class="c1"># Aeroporto de origem</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="s2">&quot;airline&quot;</span><span class="p">:</span> <span class="mf">0.38</span><span class="p">,</span>                <span class="c1"># Companhia aérea</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="s2">&quot;day_of_week&quot;</span><span class="p">:</span> <span class="mf">0.35</span><span class="p">,</span>            <span class="c1"># Dia da semana</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="mf">0.32</span><span class="p">,</span>                  <span class="c1"># Mês do ano</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="s2">&quot;aircraft_type&quot;</span><span class="p">:</span> <span class="mf">0.28</span><span class="p">,</span>          <span class="c1"># Tipo de aeronave</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="s2">&quot;route_distance&quot;</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>         <span class="c1"># Distância da rota</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="s2">&quot;wind_speed&quot;</span><span class="p">:</span> <span class="mf">0.23</span><span class="p">,</span>             <span class="c1"># Velocidade do vento</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mf">0.18</span>             <span class="c1"># Temperatura</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="problemas-identificados-nos-dados">🧹 Problemas Identificados nos Dados</h2>
+<h3 id="qualidade-dos-dados">⚠️ <strong>Qualidade dos Dados</strong></h3>
+<ol>
+<li>
+<p><strong>Valores Faltantes</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">missing_data</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="s2">&quot;weather_data&quot;</span><span class="p">:</span> <span class="s2">&quot;5.2% (2,600 registros)&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="s2">&quot;aircraft_type&quot;</span><span class="p">:</span> <span class="s2">&quot;2.1% (1,050 registros)&quot;</span><span class="p">,</span> 
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>    <span class="s2">&quot;delay_minutes&quot;</span><span class="p">:</span> <span class="s2">&quot;0.8% (400 registros)&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="s2">&quot;arrival_time&quot;</span><span class="p">:</span> <span class="s2">&quot;0.3% (150 registros)&quot;</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Outliers Identificados</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">outliers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="s2">&quot;delay_extreme&quot;</span><span class="p">:</span> <span class="s2">&quot;67 voos com atraso &gt; 300 min&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="s2">&quot;negative_delays&quot;</span><span class="p">:</span> <span class="s2">&quot;1,200 voos com chegada antecipada &gt; 30 min&quot;</span><span class="p">,</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="s2">&quot;impossible_speeds&quot;</span><span class="p">:</span> <span class="s2">&quot;15 voos com velocidade &gt; 1000 km/h&quot;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Inconsistências</strong></p>
+</li>
+<li>Voos com horário de chegada antes da partida</li>
+<li>Aeroportos com coordenadas incorretas</li>
+<li>Códigos ICAO inválidos</li>
+</ol>
+<h2 id="recomendacoes-para-modelagem">📋 Recomendações para Modelagem</h2>
+<h3 id="estrategias-de-feature-engineering">🎯 <strong>Estratégias de Feature Engineering</strong></h3>
+<ol>
+<li>
+<p><strong>Variáveis Temporais</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">temporal_features</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="s2">&quot;hour_of_day&quot;</span><span class="p">,</span>           <span class="c1"># Hora extraída</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="s2">&quot;day_of_week&quot;</span><span class="p">,</span>          <span class="c1"># Dia da semana</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="s2">&quot;month&quot;</span><span class="p">,</span>                <span class="c1"># Mês</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="s2">&quot;is_weekend&quot;</span><span class="p">,</span>           <span class="c1"># Final de semana</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="s2">&quot;is_holiday&quot;</span><span class="p">,</span>           <span class="c1"># Feriado</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>    <span class="s2">&quot;quarter&quot;</span><span class="p">,</span>              <span class="c1"># Trimestre</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="s2">&quot;time_slot&quot;</span>             <span class="c1"># Faixa horária</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="p">]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Variáveis de Clima</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">weather_features</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="s2">&quot;weather_severity&quot;</span><span class="p">,</span>      <span class="c1"># Severidade do clima (0-5)</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="s2">&quot;visibility_category&quot;</span><span class="p">,</span>   <span class="c1"># Categorias de visibilidade</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="s2">&quot;wind_category&quot;</span><span class="p">,</span>        <span class="c1"># Categorias de vento</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="s2">&quot;precipitation_level&quot;</span><span class="p">,</span>  <span class="c1"># Níveis de precipitação</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="s2">&quot;weather_composite&quot;</span>     <span class="c1"># Score composto</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="p">]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Variáveis de Aeroporto</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">airport_features</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="s2">&quot;airport_size&quot;</span><span class="p">,</span>         <span class="c1"># Tamanho do aeroporto</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="s2">&quot;historical_delay_rate&quot;</span><span class="p">,</span> <span class="c1"># Taxa histórica de atraso</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="s2">&quot;traffic_volume&quot;</span><span class="p">,</span>       <span class="c1"># Volume de tráfego</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="s2">&quot;runway_count&quot;</span><span class="p">,</span>         <span class="c1"># Número de pistas</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="s2">&quot;hub_status&quot;</span>           <span class="c1"># Status de hub</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">]</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="preprocessing-necessario">🔄 <strong>Preprocessing Necessário</strong></h3>
+<ol>
+<li><strong>Tratamento de Outliers</strong></li>
+<li>Winsorização nos atrasos extremos</li>
+<li>
+<p>Remoção de dados impossíveis</p>
+</li>
+<li>
+<p><strong>Encoding de Variáveis Categóricas</strong></p>
+</li>
+<li>One-hot encoding para aeroportos</li>
+<li>Label encoding para companhias aéreas</li>
+<li>
+<p>Target encoding para rotas</p>
+</li>
+<li>
+<p><strong>Normalização</strong></p>
+</li>
+<li>StandardScaler para variáveis numéricas</li>
+<li>MinMaxScaler para variáveis limitadas</li>
+</ol>
+<h2 id="scripts-de-analise">📝 Scripts de Análise</h2>
+<h3 id="notebook-principal">📊 Notebook Principal</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># eda_main.py - Script principal de EDA</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_and_explore_data</span><span class="p">():</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Carrega e faz análise inicial dos dados&quot;&quot;&quot;</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="c1"># Carregar dados</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>    <span class="n">flights_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;data/input/voos.json&#39;</span><span class="p">)</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>    <span class="n">airports_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/input/airport_database/airports-database.csv&#39;</span><span class="p">)</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>    <span class="c1"># Info básica</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== INFORMAÇÕES GERAIS ===&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total de voos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">flights_df</span><span class="p">)</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Período: </span><span class="si">{</span><span class="n">flights_df</span><span class="p">[</span><span class="s1">&#39;departure_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> até </span><span class="si">{</span><span class="n">flights_df</span><span class="p">[</span><span class="s1">&#39;departure_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Aeroportos únicos: </span><span class="si">{</span><span class="n">flights_df</span><span class="p">[</span><span class="s1">&#39;departure_airport&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Companhias únicas: </span><span class="si">{</span><span class="n">flights_df</span><span class="p">[</span><span class="s1">&#39;airline&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>    <span class="k">return</span> <span class="n">flights_df</span><span class="p">,</span> <span class="n">airports_df</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="k">def</span><span class="w"> </span><span class="nf">analyze_delays</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Análise detalhada de atrasos&quot;&quot;&quot;</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a>
+<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a>    <span class="n">delay_analysis</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a>        <span class="s1">&#39;total_flights&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a>        <span class="s1">&#39;delayed_flights&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span><span class="p">]),</span>
+<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a>        <span class="s1">&#39;on_time_flights&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">False</span><span class="p">]),</span>
+<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a>        <span class="s1">&#39;delay_rate&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a>        <span class="s1">&#39;avg_delay&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]][</span><span class="s1">&#39;delay_minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a>        <span class="s1">&#39;median_delay&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;is_delayed&#39;</span><span class="p">]][</span><span class="s1">&#39;delay_minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">(),</span>
+<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a>        <span class="s1">&#39;max_delay&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;delay_minutes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a>    <span class="p">}</span>
+<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a>
+<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a>    <span class="k">return</span> <span class="n">delay_analysis</span>
+<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a>
+<a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="k">def</span><span class="w"> </span><span class="nf">weather_impact_analysis</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<a id="__codelineno-18-40" name="__codelineno-18-40" href="#__codelineno-18-40"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Análise do impacto do clima&quot;&quot;&quot;</span>
+<a id="__codelineno-18-41" name="__codelineno-18-41" href="#__codelineno-18-41"></a>
+<a id="__codelineno-18-42" name="__codelineno-18-42" href="#__codelineno-18-42"></a>    <span class="n">weather_groups</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;weather_conditions&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
+<a id="__codelineno-18-43" name="__codelineno-18-43" href="#__codelineno-18-43"></a>        <span class="s1">&#39;is_delayed&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">],</span>
+<a id="__codelineno-18-44" name="__codelineno-18-44" href="#__codelineno-18-44"></a>        <span class="s1">&#39;delay_minutes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">]</span>
+<a id="__codelineno-18-45" name="__codelineno-18-45" href="#__codelineno-18-45"></a>    <span class="p">})</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-18-46" name="__codelineno-18-46" href="#__codelineno-18-46"></a>
+<a id="__codelineno-18-47" name="__codelineno-18-47" href="#__codelineno-18-47"></a>    <span class="k">return</span> <span class="n">weather_groups</span>
+<a id="__codelineno-18-48" name="__codelineno-18-48" href="#__codelineno-18-48"></a>
+<a id="__codelineno-18-49" name="__codelineno-18-49" href="#__codelineno-18-49"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<a id="__codelineno-18-50" name="__codelineno-18-50" href="#__codelineno-18-50"></a>    <span class="c1"># Executar análises</span>
+<a id="__codelineno-18-51" name="__codelineno-18-51" href="#__codelineno-18-51"></a>    <span class="n">flights_df</span><span class="p">,</span> <span class="n">airports_df</span> <span class="o">=</span> <span class="n">load_and_explore_data</span><span class="p">()</span>
+<a id="__codelineno-18-52" name="__codelineno-18-52" href="#__codelineno-18-52"></a>    <span class="n">delay_stats</span> <span class="o">=</span> <span class="n">analyze_delays</span><span class="p">(</span><span class="n">flights_df</span><span class="p">)</span>
+<a id="__codelineno-18-53" name="__codelineno-18-53" href="#__codelineno-18-53"></a>    <span class="n">weather_impact</span> <span class="o">=</span> <span class="n">weather_impact_analysis</span><span class="p">(</span><span class="n">flights_df</span><span class="p">)</span>
+<a id="__codelineno-18-54" name="__codelineno-18-54" href="#__codelineno-18-54"></a>
+<a id="__codelineno-18-55" name="__codelineno-18-55" href="#__codelineno-18-55"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Análise completa!&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="proximos-passos">🔗 Próximos Passos</h2>
+<ol>
+<li><strong><a href="../preprocessing/">📊 Pré-processamento</a></strong> - Limpeza e preparação dos dados</li>
+<li><strong><a href="../model-training/">🤖 Treinamento</a></strong> - Desenvolvimento dos modelos preditivos</li>
+<li><strong><a href="../evaluation/">📈 Avaliação</a></strong> - Métricas e validação dos modelos</li>
+</ol>
+<hr />
+<h2 id="referencias">📞 Referências</h2>
+<ul>
+<li>📓 <strong><a href="../../notebooks/eda/">Notebook EDA</a></strong> - Análise interativa completa</li>
+<li>🎯 <strong><a href="../../architecture/ml-pipeline/">Arquitetura ML</a></strong> - Pipeline de machine learning</li>
+<li>📊 <strong><a href="../../quick-start/setup/#configuracao-dos-dados">Dados</a></strong> - Como acessar os datasets</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
